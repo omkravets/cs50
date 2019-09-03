@@ -1,4 +1,4 @@
-# Cash
+# Готівка
 
 {% video https://youtu.be/Z9-ektenG-A %}
 
