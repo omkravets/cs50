@@ -1,150 +1,152 @@
 # Hello
 
-{% video https://www.youtube.com/watch?v=DmE9lCvrxgU %}
+{% video https://youtu.be/SmwyU3Sz8Ig %}
 
 {% next %}
 
-## Listing Files
+## Перегляд файлів
 
-Hello, world! At right, in the *text editor*, is the very first program we wrote in C, in a file called `hello.c`. 
+Привіт, світ! Справа, у текстовому редакторі CS50 Lab ми напишемо першу програму на С у файлі під назвою hello.c. 
 
-Click the folder icon, and you'll see that `hello.c` is the only file that's present at the moment. Per the mention of `/root/sandbox` below that icon, `hello.c` happens to be in a folder (otherwise known as a *directory*) called `sandbox`, which itself is in another folder called `root`. Click the folder icon again to hide all that.
+Натисніть на іконку теки, ви побачите, що hello.c – це єдиний файл, який у вас зараз є. Якщо ви звернули увагу на /root/sandbox під іконкою, це означає, що файл hello.c знаходиться у теці (теки ще називають директоріями) під назвою sandbox, а вона знаходиться у іншій теці під назвою root. Натисніть ще раз на іконку теки, аби сховати все це.
 
-Next, in the *terminal window* at right, immediately to the right of the dollar sign (`$`), otherwise known as a *prompt*, type precisely the below (in lowercase), then hit Enter:
+Далі у вікні терміналу справа одразу після знаку долара ($), який також відомий як запрошення командного рядка, наберіть точнісенько наступне (малими літерами), потім натисніть Enter:
+
 
 ```
 ls
 ```
 
-You should see just `hello.c`? That's because you've just listed the files in that same folder, this time using a command-line interface (CLI), using just your keyboard, rather than the graphical user interface (GUI) represented by that folder icon. In particular, you *executed* (i.e., ran) a command called `ls`, which is shorthand for "list." (It's such a frequently used command that its authors called it just `ls` to save keystrokes.) Make sense?
+Чи маєте ви бачити лише hello.c? Так, це тому, що ви щойно вивели список файлів у цій теці,с користавшись інтерфейсом командного рядка за допомогою виключно клавіатури, а не графічного користувацького інтерфейсу GUI, представленого іконкою теки. Якщо точно, ви виконали (тобто запустили) команду ls, це скорочено «list» або «список» (ця команда використовується настільки часто, що її автори назвали просто ls, аби заощадити час під час набору). Логічно?
 
-Here on out, to execute (i.e., run) a command means to type it into a terminal window and then hit Enter. Commands are "case-sensitive," so be sure not to type in uppercase when you mean lowercase or vice versa.
+Надалі для виконання (запуску) команд друкуйте їх у вікні терміналу та натискайте Enter. Команди чутливі до регістру, тому уважно поставтесь до введення – не друкуйте великими літерами, коли маєте на увазі маленькі, та навпаки.
 
 {% next %}
 
-## Compiling Programs
+## Компілювання програм
 
-Now, before we can execute the program at right, recall that we must *compile* it with a *compiler* (e.g., `clang`), translating it from *source code* into *machine code* (i.e., zeroes and ones). Execute the command below to do just that:
+NПеред тим, як виконувати програму, розміщену справа, згадайте, що ми маємо її скомпілювати компілятором (тобто clang), який перекладає її з вихідного коду на машинний код (тобто нулі та одиниці). Виконайте команду нижче, аби скомпілювати програму:
 
 ```
 clang hello.c
 ```
 
-And then execute this one again:
+А потім викличіть ще раз:
 
 ```
 ls
 ```
 
-This time, you should see not only `hello.c` but `a.out` listed as well? (You can see the same graphically if you click that folder icon again.) That's because `clang` has translated the source code in `hello.c` into machine code in `a.out`, which happens to stand for "assembler output," but more on that another time.
+TЦього разу ви маєте побачити не тільки hello.c а й a.out у списку. (Те ж саме ви можете побачити графічно, якщо клікнете на іконку теки ще раз.) Все тому, що clang переклав вихідний код у hello.c на машинний код у a.out, що означає «вивід асемблера», але поговоримо про це іншим разом.
 
-Now run the program by executing the below.
+Запустіть програму за допомогою команди нижче.
+
 
 ```
 ./a.out
 ```
 
-Hello, world, indeed!
+Hello, world, насправді!
 
 {% next %}
 
-## Naming Programs
+## Називання програм
 
-Now, `a.out` isn't the most user-friendly name for a program. Let's compile `hello.c` again, this time saving the machine code in a file called, more aptly, `hello`. Execute the below.
+Na.out не дуже привітна для користувача назва програми. Скомпілюємо hello.c ще раз, але цього разу збережемо машинний код до файлу із назвою hello. Виконайте команду нижче.
 
 ```
 clang -o hello hello.c
 ```
 
-Take care not to overlook any of those spaces therein! Then execute this one again:
+Зверніть увагу, у команді не має бути зайвих пробілів! А потім ще раз виконайте:
 
 ```
 ls
 ```
 
-You should now see not only `hello.c` (and `a.out` from before) but also `hello` listed as well? That's because `-o` is a *command-line argument*, sometimes known as a *flag* or a *switch*, that tells `clang` to output (hence the `o`) a file called `hello`. Execute the below to try out the newly named program.
+Тепер у вас буде не тільки hello.c (та a.out з попередньої компіляції) а й hello також. Це тому що -o – це аргумент командного рядка, іноді його називають прапорець або ключ, він повідомляє clang вивести (output, тобто o) файл з назвою hello. Виконайте команду нижче, щоб переглянути, як працює програма з новою назвою.
 
 ```
 ./hello
 ```
 
-Hello there again!
+І знову привіт!
 
 {% next %}
 
-## Making Things Easier
+## Давайте спростимо
 
-Recall that we can automate the process of executing `clang`, letting `make` figure out how to do so for us, thereby saving us some keystrokes. Execute the below to compile this program one last time.
-
-```
-make hello
-```
-
-You should see that `make` executes `clang` with even more command-line arguments for you? More on those, too, another time!
-
-Now execute the program itself one last time by executing the below.
-
-```
-./hello
-```
-
-Phew!
-
-## Getting User Input
-
-Suffice it to say, no matter how you compile or execute this program, it only ever prints `hello, world`. Let's personalize it a bit, just as we did in class.
-
-Modify this program in such a way that it first prompts the user for their name and then prints `hello, so-and-so`, where `so-and-so` is their actual name.
-
-As before, be sure to compile your program with:
+Згадайте, що ми можемо автоматизувати процес виклику clang, дозволивши make самостійно з усім розібратись, а значить зберегти нам трохи часу. Виконайте команду нижче, аби скомпілювати програму останній раз.
 
 ```
 make hello
 ```
 
-And be sure to execute your program, testing it a few times with different inputs, with:
+YВи маєте побачити, що make викликає clang з іще більшою кількістю аргументів командного рядка. Але про це також іншим разом!
+
+Тепер запустіть саму програму останній раз за допомогою команди нижче.
 
 ```
 ./hello
 ```
 
-### Staff's Solution
+Фух!
 
-To try out the staff's implementation of this problem, execute
+## Отримання даних від користувача
+
+SМожемо сказати, що незалежно від того, як саме ви компілювали або запускали програму, вона все одно виведе тільки hello, world. Давайте трохи персоналізуємо, як було під час лекції.
+
+Змініть програму так, щоб вона спочатку запитувала у користувача його ім’я, а потім виводила hello, такий-то, де такий-то - ім’я користувача.
+
+Впевніться, що ви скомпілювали програму за допомогою:
+
+```
+make hello
+```
+
+Та впевніться, що запустили програму й кілька разів перевірили її з різними вхідними даними за допомогою:
+
+```
+./hello
+```
+
+### Розв'язок команди курсу
+
+Аби переглянути варіант реалізації від команди курсу для цієї задачі, виконайте:
 
 <pre>
 ./hello
 </pre>
 
-within [this sandbox](http://bit.ly/2Qp0a2g).
+ось тут [this sandbox](http://bit.ly/2Qp0a2g).
 
-### Hints
+### Підказки
 
-#### Don't recall how to prompt the user for their name?
+#### Не пам’ятаєте, як запитати у користувача його чи її ім’я?
 
-Recall that you can use `get_string` as follows, storing its *return value* in a variable called `name` of type `string`.
+RЗгадайте, що можна скористатись get_string ось так, зберігши значення, яке повернеться, у змінній з назвою name типу string..
 
 ```c
 string name = get_string("What is your name?\n");
 ```
 
-#### Don't recall how to format a string?
+#### Не пам’ятаєте, як форматувати рядки?
 
-Don't recall how to join (i.e., concatenate) the user's name with a greeting? Recall that you can use `printf` not only to print but to format a string (hence, the `f` in `printf`), a la the below, wherein `name` is a `string`.
+Не пам’ятаєте, як об’єднувати (тобто конкатенувати) ім’я користувача з привітанням? Згадайте, що можна використати printf не тільки для виведення на екран, а й для форматування рядків, саме так, як показано нижче, де у name збережено string.
 
 ```c
 printf("hello, %s\n", name);
 ```
 
-#### Use of undeclared identifier?
+#### Використання неоголошеного ідентифікатора?
 
-Seeing the below, perhaps atop other errors?
+Бачите наступне, скоріше за все, над усіма іншими помилками?
 
 ```
 error: use of undeclared identifier 'string'; did you mean 'stdin'?
 ```
 
-Recall that, to use `get_string`, you need to include `cs50.h` (in which `get_string` is *declared*) atop a file, as with:
+Пригадайте, коли використовуємо get_string, потрібно підключити cs50.h (у якій функцію get_string оголошено) нагорі файлу, як ось тут:
 
 ```c
 #include <cs50.h>
@@ -152,9 +154,9 @@ Recall that, to use `get_string`, you need to include `cs50.h` (in which `get_st
 
 {% next %}
 
-## How to Submit
+## Як надіслати?
 
-Execute the below, logging in with your GitHub username and password when prompted. For security, you'll see asterisks (`*`) instead of the actual characters in your password.
+Виконайте наведене нижче, увійшовши за допомогою свого імені користувача та пароля GitHub, коли буде запропоновано. З метою безпеки ви побачите зірочки (`*`) замість фактичних символів у вашому паролі.
 
 ```
 submit50 cs50/2018/fall/hello
