@@ -1,16 +1,16 @@
 # Mario
 
-{% video https://www.youtube.com/watch?v=C-5-22ZvW40 %}
+{% video https://youtu.be/SQjeP62j9F0 %}
 
 {% next %}
 
 ## World 1-1
 
-Toward the end of World 1-1 in Nintendo's Super Mario Brothers, Mario must ascend right-aligned pyramid of blocks, a la the below.
+В кінці рівня World 1-1 гри Super Mario Brothers компанії Nintendo, Маріо має піднятись на напівпіраміду з блоків перед тим, як стрибнути до флагштока (якщо він хоче максимізувати набрані очки). Знизу ви можете побачити скріншот з гри.
 
 ![screenshot of Mario jumping up a right-aligned pyramid](pyramid.png)
 
-Let's recreate that pyramid in C, albeit in text, using hashes (`#`) for bricks, a la the below. Each hash is a bit taller than it is wide, so the pyramid itself is also be taller than it is wide.
+Давайте відтворимо цю піраміду на С, у текстовому вигляді за допомогою хешів (#), які будуть замість цеглин. Кожен хеш трохи вищий, ніж ширший, то ж і сама піраміда стає вищою та вужчою.
 
 ```
        #
@@ -23,9 +23,9 @@ Let's recreate that pyramid in C, albeit in text, using hashes (`#`) for bricks,
 ########
 ```
 
-The program we'll write will be called `mario`. And let's allow the user to decide just how tall the pyramid should be by first prompting them for a positive integer between, say, 1 and 8, inclusive. 
+Наша програма буде називатись mario. Давайте дамо користувачеві можливість вирішити самостійно, наскільки високою має бути піраміда, спочатку запитавши в користувача ціле число від 1 до 8 включно.
 
-Here's how the program might work if the user inputs `8` when prompted:
+Ось, як має працювати програма, якщо користувач ввів число 8:
 
 ```
 $ ./mario
@@ -40,7 +40,7 @@ Height: 8
 ########
 ```
 
-Here's how the program might work if the user inputs `4` when prompted:
+Ось, як має працювати програма, якщо користувач ввів число 4:
 
 ```
 $ ./mario
@@ -51,7 +51,7 @@ Height: 4
 ####
 ```
 
-Here's how the program might work if the user inputs `2` when prompted:
+Ось, як має працювати програма, якщо користувач ввів число 2:
 
 ```
 $ ./mario
@@ -60,7 +60,7 @@ Height: 2
 ##
 ```
 
-And here's how the program might work if the user inputs `1` when prompted:
+Ось, як має працювати програма, якщо користувач ввів число 1:
 
 ```
 $ ./mario
@@ -68,7 +68,7 @@ Height: 1
 #
 ```
 
-If the user doesn't, in fact, input a positive integer between 1 and 8, inclusive, when prompted, the program should re-prompt the user until they cooperate:
+Якщо користувач не ввів додатне ціле число від 1 до 8 включно, програма має продовжувати запитувати число, поки користувач його не введе:
 
 ```
 $ ./mario
@@ -83,19 +83,19 @@ Height: 4
 ####
 ```
 
-{% spoiler "Try It" %}
+{% spoiler "РОЗВ’ЯЗОК КОМАНДИ КУРСУ" %}
 
-To try out the staff's implementation of this problem, execute
+Для перегляду розв’язків цієї задачі від команди курсу, виконайте:
 
 ```
 ./mario
 ```
 
-within [this sandbox](http://bit.ly/2VAClIi).
+ось тут [this sandbox](http://bit.ly/2VAClIi).
 
 {% endspoiler %}
 
-How to begin? Let's approach this problem one step at a time.
+Як розпочати? Давайте розглянемо задачу покроково.
 
 {% next %}
 
@@ -118,11 +118,11 @@ It's okay to edit your own after seeing this pseudocode here, but don't simply c
 
 {% next %}
 
-## Prompting for Input
+## Запит вхідних даних від користувача
 
-Whatever your pseudocode, let's first write only the C code that prompts (and re-prompts, as needed) the user for input. 
+Яким би не був ваш псевдокод, давайте почнемо з коду на С, який просить (одноразово чи повторно) користувача ввести дані.
 
-Specifically, modify `mario.c` at right in such a way that it prompts the user for the pyramid's height, storing their input in a variable, re-prompting the user again and again as needed if their input is not a positive integer between 1 and 8, inclusive. Then, simply print the value of that variable, thereby confirming (for yourself) that you've indeed stored the user's input successfully, a la the below.
+Змініть `mario.c` справа таким чином, аби у коді був запит до користувача про висоту піраміди, збережіть введені дані у змінній, ще раз запитайте користувача, а потім знову за потреби, якщо він вводить не цілі додатні числа від 1 до 8 включно. Потім просто виведіть значення змінної, чим ви підтвердите (для себе), що ви насправді зберегли введені користувачем дані, як наведено нижче.
 
 ```
 $ ./mario
@@ -134,21 +134,21 @@ Height: 4
 Stored: 4
 ```
 
-{% spoiler "Hints" %}
+{% spoiler "Підказки" %}
 
-* Recall that you can compile your program with `make`.
-* Recall that you can print an `int` with `printf` using `%i`.
-* Recall that you can get an integer from the user with `get_int`.
-* Recall that `get_int` is declared in `cs50.h`.
-* Recall that we prompted the user for a positive integer in class via [`positive.c`](https://sandbox.cs50.io/b56865fd-c861-425f-aad7-4adcf6831139).
+*Пам’ятайте, що можете скомпілювати вашу програму за допомогою make.
+*Пам’ятайте, що ви можете виводити int за допомогою printf скориставшись %i.
+*Пам’ятайте, що ви можете одержати ціле число від користувача за допомогою get_int.
+*Пам’ятайте, що get_int оголошується у cs50.h.
+*Пам’ятайте, що ми запитували у користувача додатне ціле число під час лекції в positive.c (потрібен акаунт у GitHub) [`positive.c`](https://sandbox.cs50.io/b56865fd-c861-425f-aad7-4adcf6831139).
 
 {% endspoiler %}
 
-## Building the Opposite
+## Побудова зворотної піраміди
 
-Now that your program is (hopefully!) accepting input as prescribed, it's time for another step.
+Ваша програма (сподіваємось!) приймає вхідні дані, як потрібно, настав час наступного кроку.
 
-It turns out it's a bit easier to build a left-aligned pyramid than right-, a la the below.
+Виявляється, трохи простіше будувати піраміду, вирівняну за лівим краєм, ніж за правим, як ось тут:
 
 ```
 #
@@ -161,15 +161,15 @@ It turns out it's a bit easier to build a left-aligned pyramid than right-, a la
 ########
 ```
 
-So let's build a left-aligned pyramid first and then, once that's working, right-align it instead!
+Тож давайте таку й побудуємо для початку, а потім, коли все вже буде працювати, ще й вирівняємо її справа!
 
-Modify `mario.c` at right such that it no longer simply prints the user's input but instead prints a left-aligned pyramid of that height.
+Змініть `mario.c` справа таким чином, щоб програма не просто виводила дані користувача, а побудувала піраміду із вирівнювання зліва такої висоти.
 
-{% spoiler "Hints" %}
+{% spoiler "Підказки" %}
 
-* Keep in mind that a hash is just a character like any other, so you can print it with `printf`.
-* Just as Scratch has a [Repeat](https://cdn.cs50.net/2018/fall/lectures/0/lecture0.pdf) block, so does C have a [`for`](https://cdn.cs50.net/2018/fall/lectures/1/lecture1.pdf) loop, via which you can iterate some number times. Perhaps on each iteration, *i*, you could print that many hashes?
-* You can actually "nest" loops, iterating with one variable (e.g., `i`) in the "outer" loop and another (e.g., `j`) in the "inner" loop. For instance, here's how you might print a square of height and width `n`, below. Of course, it's not a square that you want to print!
+Не забудьте, що хеш – це просто символ, тому ви можете вивести його за допомогою printf, як і будь-який інший.
+Як у Scratch є блок Repeat, у С є цикл for за допомогою якого можна повторювати певну кількість разів. Можливо, на кожній ітерації i ви зможете виводити стільки ж хешів?
+Ви можете “вкладати” цикли один в один, ітеруючі через одну змінну (наприклад, i) у “зовнішньому” циклі і через іншу (наприклад, j) у “внутрішньому”. Наприклад, ось так ви зможете вивести квадрат із сторонами n. Звісно, це не той квадрат, який вам самим треба вивести!
 
     ```
     for (int i = 0; i < n; i++)
