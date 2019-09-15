@@ -91,7 +91,7 @@ Height: 4
 ./mario
 ```
 
-ось тут [this sandbox](http://bit.ly/2VAClIi).
+ось [тут](http://bit.ly/2VAClIi).
 
 {% endspoiler %}
 
@@ -99,20 +99,20 @@ Height: 4
 
 {% next %}
 
-## Pseudocode
+## Псевдокод
 
-First, write in `pseudocode.txt` at right some pseudocode that implements this program, even if not (yet!) sure how to write it in code. There's no one right way to write pseudocode, but short English sentences suffice. Recall how we wrote pseudocode for [finding Mike Smith](https://cdn.cs50.net/2018/fall/lectures/0/lecture0.pdf). Odds are your pseudocode will use (or imply using!) one or more functions, conditions, Boolean expressions, loops, and/or variables.
+Спочатку напишіть у pseudocode.txt справа якийсь псевдокод, який імплементує цю програму, навіть якщо ви не впевнені (поки!), як саме написати це у коді. Не існує правильного способу написання псевдокоду, короткі українські речення цілком підійдуть. Згадайте, як ми писали псевдокод для [пошуку Майка Сміта](https://prometheus.org.ua/cs50_2019/notes0.html#pseudocode). Мабуть, у вашому коді будуть використані (або мають бути використані!) одна-дві функції, умови, булеві вирази, цикли та/або змінні.
 
 {% spoiler %}
 
-There's more than one way to do this, so here's just one!
+Існує багато способів це зробити, а ось один з них!
 
-1. Prompt user for height
-1. If height is less than 1 or greater than 8 (or not an integer at all), go back one step
-1. Iterate from 1 through height:
-    1. On iteration *i*, print *i* hashes and then a newline
+* Запитати в користувача висоту height
+* Якщо висота менша за 1 або більше за 8 (або не ціле число взагалі), повернутись на один крок
+* Ітерувати з 1 до height:
+* На ітерації `i` виводити `i` хешів і потім новий рядок
 
-It's okay to edit your own after seeing this pseudocode here, but don't simply copy/paste ours into your own!
+Ви спокійно можете відредагувати свій код, щойно прочитаєте та проаналізуєте цей, але не копіюйте наш код замість власного!
 
 {% endspoiler %}
 
@@ -140,7 +140,7 @@ Stored: 4
 * Пам’ятайте, що ви можете виводити int за допомогою printf скориставшись %i.
 * Пам’ятайте, що ви можете одержати ціле число від користувача за допомогою get_int.
 * Пам’ятайте, що get_int оголошується у cs50.h.
-* Пам’ятайте, що ми запитували у користувача додатне ціле число під час лекції в positive.c (потрібен акаунт у GitHub) [`positive.c`](https://sandbox.cs50.io/b56865fd-c861-425f-aad7-4adcf6831139).
+* Пам’ятайте, що ми запитували у користувача додатне ціле число під час лекції в [`positive.c`](https://sandbox.cs50.io/b56865fd-c861-425f-aad7-4adcf6831139).
 
 {% endspoiler %}
 
@@ -167,9 +167,9 @@ Stored: 4
 
 {% spoiler "Підказки" %}
 
-Не забудьте, що хеш – це просто символ, тому ви можете вивести його за допомогою printf, як і будь-який інший.
-Як у Scratch є блок Repeat, у С є цикл for за допомогою якого можна повторювати певну кількість разів. Можливо, на кожній ітерації i ви зможете виводити стільки ж хешів?
-Ви можете “вкладати” цикли один в один, ітеруючі через одну змінну (наприклад, i) у “зовнішньому” циклі і через іншу (наприклад, j) у “внутрішньому”. Наприклад, ось так ви зможете вивести квадрат із сторонами n. Звісно, це не той квадрат, який вам самим треба вивести!
+* Не забудьте, що хеш – це просто символ, тому ви можете вивести його за допомогою printf, як і будь-який інший.
+* Як у Scratch є блок [Repeat](https://prometheus.org.ua/cs50_2019/notes0.html#scratch), у С є цикл for за допомогою якого можна повторювати певну кількість разів. Можливо, на кожній ітерації i ви зможете виводити стільки ж хешів?
+* Ви можете “вкладати” цикли один в один, ітеруючі через одну змінну (наприклад, i) у “зовнішньому” циклі і через іншу (наприклад, j) у “внутрішньому”. Наприклад, ось так ви зможете вивести квадрат із сторонами n. Звісно, це не той квадрат, який вам самим треба вивести!
 
     ```
     for (int i = 0; i < n; i++)
@@ -186,9 +186,9 @@ Stored: 4
 
 {% next %}
 
-## Right-Aligning with Dots
+## Вирівнювання справа за допомогою крапок
 
-Let's now right-align that pyramid by pushing its hashes to the right by prefixing them with dots (i.e., periods), a la the below.
+А тепер давайте цю ж піраміду вирівняємо справа просто посунувши хеші вправо за допомогою крапок, як наведено нижче:
 
 ```
 .......#
@@ -201,43 +201,33 @@ Let's now right-align that pyramid by pushing its hashes to the right by prefixi
 ########
 ```
 
-Modify `mario.c` in such a way that it does exactly that!
+Змініть `mario.c` так, щоб у вас саме це й вийшло!
 
-{% spoiler "Hint" %}
+{% spoiler "Підказка" %}
 
-Notice how the number of dots needed on each line is the "opposite" of the number of that line's hashes. For a pyramid of height 8, like the above, the first line has but 1 hash and thus 7 dots. The bottom line, meanwhile, has 8 hashes and thus 0 dots. Via what formula (or arithmetic, really) could you print that many dots?
-
-{% endspoiler %}
-
-### How to Test Your Code
-
-Does your code work as prescribed when you input
-
-* `-1` (or other negative numbers)?
-* `0`?
-* `1` through `8`?
-* `9` or other positive numbers?
-* letters or words?
-* no input at all, when you only hit Enter?
-
-{% next %}
-
-## Removing the Dots
-
-All that remains now is a finishing flourish! Modify `mario.c` in such a way that it prints spaces instead of those dots!
-
-{% spoiler "Hint" %}
-
-A space is just a press of your space bar, just as a period is just a press of its key! Just remember that `printf` requires that you surround both with double quotes!
+Зверніть увагу, що кількість крапок на кожному рядку протилежна числу хешів. Для піраміди у 8 хешів заввишки, як на прикладі згори, на першому рядку буде 1 хеш та 7 крапок. На нижньому рядку водночас буде 8 хешів та 0 крапок. За допомогою якої формули (або розрахунків) ви можете вивести потрібну кількість крапок?
 
 {% endspoiler %}
 
+### Як протестувати ваш код
+
+Ваш код працює так, як описано, коли ви вводите:
+
+* -1 (або інше від’ємне число)?
+* 0?
+* від 1 до 8?
+* 9 або інше додатне число?
+* літери або слова?
+* нічого не вводите, а просто натискаєте Enter?
+
 {% next %}
 
-## How to Submit
+## Прибирання крапок
 
-Execute the below, logging in with your GitHub username and password when prompted. For security, you'll see asterisks (`*`) instead of the actual characters in your password.
+Залишилось тільки все причепурити! Змініть mario.c так, аби замість крапок були пробіли!
 
-```
-submit50 cs50/2018/fall/mario/less
-```
+{% spoiler "Підказка" %}
+
+Пробіл – це просто одне натискання по пробілу на клавіатурі, так само, як крапка – це просто натискання її символу! Пам’ятайте, що `printf` потрібно, щоб те й інше було у подвійних лапках!
+
+{% endspoiler %}
