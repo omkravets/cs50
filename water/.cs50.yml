@@ -2,5 +2,4 @@ lab50:
   cmd: alias check50="echo 'Unavailable for this lab'"
   files:
     - !exclude "*"
-    - !include mario.c
-    - !include pseudocode.txt
+    - !include water.c
