@@ -6,13 +6,13 @@
 
 ## Et tu?
 
-Supposedly, Caesar (yes, that Caesar) used to "encrypt" (i.e., conceal in a reversible way) confidential messages by shifting each letter therein by some number of places. For instance, he might write A as B, B as C, C as D, ..., and, wrapping around alphabetically, Z as A. And so, to say HELLO to someone, Caesar might write IFMMP. Upon receiving such messages from Caesar, recipients would have to "decrypt" them by shifting letters in the opposite direction by the same number of places.
+Кажуть, що Цезар (так, той самий Цезар) зашифровував усі конфіденційні повідомлення (тобто змінював їх таким чином, щоб можна було відновити оригінал) шляхом зсуву кожної букви на кілька кроків. Наприклад, він міг написати A як B, B як C, C як D ... Z як A. А отже, щоб сказати комусь HELLO, Цезар міг написати IFMMP. Після отримання такого повідомлення від Цезаря, отримувачі повинні були «розшифрувати» повідомлення шляхом зсуву літер у зворотньому напрямку на таку саму кількість кроків.
 
-The secrecy of this "cryptosystem" relied on only Caesar and the recipients knowing a secret, the number of places by which Caesar had shifted his letters (e.g., 1). Not particularly secure by modern standards, but, hey, if you're perhaps the first in the world to do it, pretty secure!
+Секретність такої «криптосистеми» полягала у тому, що тільки Цезар і отримувач повідомлення знали цей секрет – кількість кроків, на яку Цезар зсунув літери (наприклад, 1). За нинішніми стандартами, все це не так вже й безпечно, але якщо ви – перша людина у світі, яка займається подібними речами, ще й як безпечно!
 
-Unencrypted text is generally called _plaintext_. Encrypted text is generally called _ciphertext_. And the secret used is called a _key_.
+Незашифрований текст зазвичай називають _звичайний текст_. Зашифрований текст зазвичай так і називають _зашифрований текст_. Секретна інформація, що використовується при шифруванні, називається _ключем_.
 
-To be clear, then, here's how encrypting `HELLO` with a key of 1 yields `IFMMP`:
+На рисунку нижче зображено, як слово `HELLO` із використанням ключа 1 шифрується у `IFMMP`:
 
 | plaintext    | H | E | L | L | O |
 |--------------|---|---|---|---|---|
