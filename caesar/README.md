@@ -14,20 +14,20 @@
 
 На рисунку нижче зображено, як слово `HELLO` із використанням ключа 1 шифрується у `IFMMP`:
 
-| plaintext    | H | E | L | L | O |
-|--------------|---|---|---|---|---|
-| + key        | 1 | 1 | 1 | 1 | 1 |
-| = ciphertext | I | F | M | M | P |
+| звичайний текст   | H | E | L | L | O |
+|-------------------|---|---|---|---|---|
+| + ключ            | 1 | 1 | 1 | 1 | 1 |
+| = зашифрований    | I | F | M | M | P |
 
-More formally, Caesar's algorithm (i.e., cipher) encrypts messages by "rotating" each letter by _k_ positions. More formally, if _p_ is some plaintext (i.e., an unencrypted message), _p<sub>i</sub>_ is the _i<sup>th</sup>_ character in _p_, and _k_ is a secret key (i.e., a non-negative integer), then each letter, _c<sub>i</sub>_, in the ciphertext, _c_, is computed as
+Якщо говорити загально, алгоритм Цезаря (тобто шифр Цезаря) шифрує повідомлення шляхом «обертання» кожної букви на k позицій. Формальніше, якщо p – якийсь звичайний текст (незашифрованне повідомлення), p<sub>i<sub> – це i-ий символ у p, а k – секретний ключ (тобто невід'ємне ціле число), тоді кожна буква c<sub>i<sub> у зашифрованному тексті c, обраховується так:
 
-c<sub>i</sub> = (p<sub>i</sub> + k) % 26
+c<sub>i<sub> = (p<sub>i<sub> + k) % 26
 
-wherein `% 26` here means "remainder when dividing by 26." This formula perhaps makes the cipher seem more complicated than it is, but it's really just a concise way of expressing the algorithm precisely. Indeed, for the sake of discussion, think of A (or a) as 0, B (or b) as 1, ..., H (or h) as 7, I (or i) as 8, ..., and Z (or z) as 25. Suppose that Caesar just wants to say Hi to someone confidentially using, this time, a key, _k_, of 3. And so his plaintext, _p_, is Hi, in which case his plaintext's first character, _p<sub>0</sub>_, is H (aka 7), and his plaintext's second character, _p<sub>1</sub>_, is i (aka 8). His ciphertext's first character, _c<sub>0</sub>_, is thus K, and his ciphertext's second character, _c<sub>1</sub>_, is thus L. Can you see why?
+де % 26 означає «залишок від ділення на 26». Ця формула, мабуть, робить так, що шифр видається складнішим, ніж насправді, але це лише лаконічна форма точного вираження суті алгоритму. Насправді, задля прикладу, подумайте про А (або а) як про В (або b) як про 1, і так далі, H (або h) як про 7, I (або i) як про 8 і так далі, а Z (або z) як про 25. Уявімо, що Цезар хотів сказати «Hi» комусь конфіденційно, використвавши цього разу ключ k 3. Тож його звичайний текст p – це «Hi», у цьому випадку перша літера його звичайного тексту p<sub>0<sub> – це H (вона ж 7), а друга літера p<sub>1<sub> – це i (вона ж 8). Перша літера зашифрованого тексту c<sub>0<sub>, таким чином K, а друга - c<sub>1<sub>, відповідно L. Розумієте чому?
 
-Let's write a program called `caesar` that enables you to encrypt messages using Caesar's cipher. At the time the user executes the program, they should decide, by providing a command-line argument, on what the key should be in the secret message they'll provide at runtime. We shouldn't necessarily assume that the user's key is going to be a number; though you may assume that, if it is a number, it will be a positive integer.
+Давайте напишемо програму під назвою caesar, яка дозволить вам зашифрувати повідомлення шифром Цезаря. Під час запуску програми користувачем, він має обрати за допомогою аргументів командного рядка, яким буде ключ у секретному повідомленні, яке він введе під час роботи програми. Не треба очікувати, що ключем обов’язково буде число, але можна вважати, що якщо це число, то це буде додатне ціле число.
 
-Here are a few examples of how the program might work. For example, if the user inputs a key of `1` and a plaintext of `HELLO`:
+Ось кілька прикладів очікуваної роботи цієї програми. Наприклад, якщо користувач вводить ключ 1 та текст HELLO:
 
 ```
 $ ./caesar 1
