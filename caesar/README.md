@@ -55,7 +55,7 @@ ciphertext: or fher gb qevax lbhe Binygvar
 
 {% spoiler "Чому?" %}
 
-{% video hhttps://youtu.be/pe_yzCzYWs8 %}
+{% video https://youtu.be/pe_yzCzYWs8 %}
 
 {% endspoiler %}
 
