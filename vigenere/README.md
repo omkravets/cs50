@@ -1,20 +1,20 @@
 # Vigenère
 
-{% video https://www.youtube.com/watch?v=L7d2-lcfOz0 %}
+{% video https://youtu.be/qmgr9yJFdXQ %}
 
 {% next %}
 
 ## Ooh, la la!
 
-Vigenère's cipher improves upon Caesar's cipher by encrypting messages using a _sequence_ of keys (or, put another way, a _keyword_).
+Шифр Віженера є покращенням відносно шифру Цезаря. Шифрування у ньому відбувається шляхом використання _послідовності ключів_ (або _лючового слова_).
 
-In other words, if _p_ is some plaintext and _k_ is a keyword (i.e., an alphabetical string, whereby A (or a) represents 0, B (or b) represents 1, C (or c) represents 2, ..., and Z (or z) represents 25), then each letter, _c<sub>i</sub>_, in the ciphertext, _c_, is computed as:
+Тобто, якщо _p_ – це звичайний текст і _k_ – ключове слово (як, наприклад, алфавітний рядок: де А (або а) представляє 0, B (або b) представляє 1, C (або c) представляє 2, Z представляє с 25), то кожна літера _c<sub>i</sub>_, в зашифрованому тексті _c_ обраховується як:
 
 c<sub>i</sub> = (p<sub>i</sub> + k<sub>j</sub>) % 26
 
-Note this cipher's use of _k<sub>j</sub>_ as opposed to just _k_. And if _k_ is shorter than _p_, then the letters in _k_ must be reused cyclically as many times as it takes to encrypt _p_.
+Зауважте, що шифр використовує _k<sub>j</sub>_ проти _k_. І пам'ятайте, що, якщо довжина _k_ менша за довжину _p_, то літери в _k_ мають бути циклічно використані стільки раз, скільки потрібно для шифрування _p_.
 
-In other words, if Vigenère himself wanted to say HELLO to someone confidentially, using a keyword of, say, ABC, he would encrypt the H with a key of 0 (i.e., A), the E with a key of 1 (i.e., B), and the first L with a key of 2 (i.e., C), at which point he'd be out of letters in the keyword, and so he'd reuse (part of) it to encrypt the second L with a key of 0 (i.e., A) again, and the O with a key of 1 (i.e., B) again. And so he'd write HELLO as HFNLP, per the below:
+Інакше кажучи, якби сам Віженер хотів конфіденційно сказати комусь HELLO із використанням ключового слова, скажемо, ABC, він би зашифрував H за допомогою ключа 0 (тобто A), Е – за допомогою ключа 1 (тобто B), а першу букву L – за допомогою ключа 2 (тобто С). На цьому етапі в нього б закінчились букви у ключовому слові, і тому він знову використав би частину ключового слова, щоб зашифрувати другу L ключем 0 (тобто A), а букву O – ключем 1 (тобто B). Отже, він написав би HELLO як HFNLP, як на рисунку нижче:
 
 | plaintext    | H | E | L | L | O |
 |--------------|---|---|---|---|---|
@@ -22,9 +22,9 @@ In other words, if Vigenère himself wanted to say HELLO to someone confidential
 | (shift value)| 0 | 1 | 2 | 0 | 1 |
 | = ciphertext | H | F | N | L | P |
 
-Let's now write a program called `vigenere` that enables you to encrypt messages using Vigenère's cipher. At the time the user executes the program, they should decide, by providing a command-line argument, on what the keyword should be for the secret message they'll provide at runtime.
+Давайте напишемо програму `vigenere`, яка дозволяє шифрувати повідомлення за допомогою коду Віженера. Під час запуску програми користувачем, він має обрати за допомогою аргументу командного рядка, яким буде ключ у секретному повідомленні, яке він введе під час роботи програми.
 
-Here are a few examples of how the program might work.
+Ось кілька прикладів того, як може працювати програма:
 
 ```
 $ ./vigenere bacon
@@ -32,64 +32,68 @@ plaintext:  Meet me at the park at eleven am
 ciphertext: Negh zf av huf pcfx bt gzrwep oz
 ```
 
-or for when the user provides a keyword that is not fully alphabetic:
+або коли користувач вводить ключове слово, але воно не повністю складається з літер:
 
 ```
 $ ./vigenere 13
 Usage: ./vigenere keyword
 ```
 
-or for when they don't provide a keyword at all:
+Або коли користувач не вводить ключове слово:
 
 ```
 $ ./vigenere
 Usage: ./vigenere keyword
 ```
 
-or for when they provide too many keywords:
+Або коли користувач вводить забагато ключових слів:
 
 ```
 $ ./vigenere bacon and eggs
 Usage: ./vigenere keyword
 ```
 
-{% spoiler "Try It" %}
+{% spoiler "Спробуйте" %}
 
-To try out the staff's implementation of this problem, execute
+Для того, щоб спробувати варіанти розв’язку цієї задачі командою курсу, виконайте%
 
 ```
 ./vigenere keyword
 ```
 
-substituting a valid alphabetic string in place of `keyword` within [this sandbox](http://bit.ly/2Qocfog).
+Поставте валідний літерний рядок на місце `ключового слова` ось[тут](http://bit.ly/2Qocfog).
 
 {% endspoiler %}
 
-How to begin? Let's start with something familiar.
+З чого почати? Давайте почнемо з чогось знайомого!
 
 {% next %}
 
 ## Déjà vu
 
-As you may have gleaned already, the basic idea for this cipher is strikingly similar to the idea underlying Caesar's cipher. As such, our code from Caesar seems like a good place to begin, so feel free to start by replacing the entire contents of `vigenere.c`, at right, with your solution to `caesar.c`.
+Як ви вже, мабуть, зрозуміли, основна ідея цього виду шифрування дуже подібна до ідеї, яка лежить в основі шифрування Цезаря. Отже, наш код у шифруванні Цезаря – це гарний початок, тож можете спокійно спробувати замінити весь вміст `vigenere.c` вашим розв’язком для `caesar.c`. 
 
-One difference between Caesar's and Vigenère's ciphers is that the key for Vigenère's cipher is a series of letters, rather than a number. So let's make sure that the user actually gave us a keyword! Modify the check you implemented in Caesar to instead ensure every character of the keyword is alphabetic, rather than a digit. If any of them isn't, print `Usage: ./vigenere keyword` and return a non-zero value as we did before. If they are all alphabetic, after checking you should print `Success` and then, `return 0;` immediately (for now), since our enciphering code is not quite ready to work just yet, so we won't have our program execute it.
+Єдина відмінність між шифруваннями Цезаря та Віженера – ключ для шифрування Віженера складається з літер, а не з чисел. Тому треба впевнитись, що користувач насправді введе ключове слово! Змініть перевірку, яку ви імплементували для шифрування Цезаря так, щоб впевнитись, що кожен символ ключового слова літерний, а не цифровий. Якщо якийсь елемент не літерний, програма має виводити `Usage: ./vigenere keyword` та повертати ненульове значення, як ми робили раніше. Якщо всі символи літерні, після перевірки ви маєте вивести `Success`, а потім вийти за допомогою `return 0;` одразу ж (на разі), оскільки наш шифруючий код ще не зовсім готовий до роботи, тож наша програма не буде його виконувати.
 
-Sample behavior:
+Приклад поведінки:
 
 ```
 $ ./vigenere alpha
 Success
 ```
 
-or
+або
 
 ```
 $ ./vigenere 123
 Usage: ./vigenere keyword
 ```
 
-{% spoiler "Hints" %}
+{% spoiler "Підказка" %}
+
+* Пам’ятайте, що заголовковий файл `string.h` містить корисні функції, які працюють з рядками. Перегляньте меню [CCS50 Reference](https://reference.cs50.net/) аби довідатись про деякі з них!
+* Пам’ятайте, що ми можемо використовувати цикл для ітерування через кожен символ рядка, якщо ми знаємо його довжину.
+* Пам’ятайте, що заголовковий файл `ctype.h` містить корисні функції, які розповідають нам різні речі про символи. Перегляньте меню [CS50 Reference](https://reference.cs50.net/) аби довідатись про деякі з них!
 
 * Recall that the `string.h` header file contains a number of useful functions that work with strings. See [CS50 Reference](https://reference.cs50.net/)'s menu for some!
 * Recall that we can use a loop to iterate over each character of a string if we know its length.
@@ -99,7 +103,7 @@ Usage: ./vigenere keyword
 
 {% next %}
 
-## Getting the shift value
+## Одержання значення зсуву
 
 Let's for now assume that the user is providing single-character keywords. Can we convert that character into the correct shift value? Let's do so by writing a _function_.
 
