@@ -95,27 +95,21 @@ Usage: ./vigenere keyword
 * Пам’ятайте, що ми можемо використовувати цикл для ітерування через кожен символ рядка, якщо ми знаємо його довжину.
 * Пам’ятайте, що заголовковий файл `ctype.h` містить корисні функції, які розповідають нам різні речі про символи. Перегляньте меню [CS50 Reference](https://reference.cs50.net/) аби довідатись про деякі з них!
 
-* Recall that the `string.h` header file contains a number of useful functions that work with strings. See [CS50 Reference](https://reference.cs50.net/)'s menu for some!
-* Recall that we can use a loop to iterate over each character of a string if we know its length.
-* Recall that the `ctype.h` header file contains a number of useful functions that tell us things about characters. See [CS50 Reference](https://reference.cs50.net/)'s menu for some!
-
 {% endspoiler %}
 
 {% next %}
 
 ## Одержання значення зсуву
 
-Let's for now assume that the user is providing single-character keywords. Can we convert that character into the correct shift value? Let's do so by writing a _function_.
-
-Near the top of your file, below the `#include` lines, let's _declare_ the _prototype_ for a new function whose purpose is to do just that. It will take a single character as input, and it will output the shift value for that character.
+Давайте на разі припустимо, що користувач надав односимвольні ключові слова. Чи можемо ми конвертувати цей символ на коректне значення зсуву? Давайте зробимо це, написавши _функцію_.
+Нагорі вашого файлу, під рядками з `#include`, давайте _оголосимо_ _прототип_ для нової функції, метою якої буде робити виключно це. Вона буде приймати один символ на вхід та повертати значення зсуву для цього символу.
 
 ```
 int shift(char c);
 ```
+Тепер ми оголосили функцію `shift` яка приймає один символ (`c`) на вхід та повертає ціле число.
 
-Now we've declared a function called `shift` that takes a single character (`c`) as input, and will output an integer.
-
-Now, down below the closing curly brace of `main`, let's give ourselves a place to _define_ (i.e., implement) this new function.
+Нижче фігурної дужки, яка закриває `main`, давайте створимо для себе місце, аби _визначити_ (тобто імплементувати) цю нову функцію.
 
 ```
 int shift(char c)
@@ -124,34 +118,34 @@ int shift(char c)
 }
 ```
 
-In place of that `TODO` is where we'll do the work of converting that character to its positional integer value (so, again, `A` or `a` would be 0, `B` or `b` would be 1, `Z` or `z` would be 25, etc.)
+Місце, де знаходиться `TODO` i- це саме те місце, де ми будемо робити конвертацію символу на потрібне цілочисельне значення (знову ж, `A` чи `a` дають 0, `B` чи `b` дають 1, `Z` чи `z` дають 25, і т.д.)
 
-To test this out, delete the line where you printed `"Success"` (but leave the `return 0;` for now), and in place of the just-deleted line, add the below lines to test whether your code works.
+Аби перевірити, видаліть рядки коду, де ви виводили `"Success"` (але залиште `return 0;` поки що), а на місці щойно видалених рядків додайте рядки подані нижче, які допоможуть перевірити, чи працює ваш код.
 
 ```
 int key = shift(argv[1][0]);
 printf("%i\n", key);
 ```
 
-Your program should print a 0 if run with the keyword `A` or `a`. Try running the program with other capital and lowercase letters as the keyword. Is the behavior what you expect?
+Ваша програма має вивести 0, якщо запустити її з ключовим словом `A` або `a`. Спробуйте запустити програму з іншими великими та малими літерами як ключовими словами. Вона поводиться саме так, як ви очікували?
 
-{% spoiler "Hints" %}
+{% spoiler "Підказка" %}
 
-* Functions have inputs and outputs.
-* When we *declare* a function, we need to provide its return type, name, and an argument list, each of which also has a type.
-* When we *use* or *call* a function, we just plug in appropriate values in the argument list, and assign the output of the function to a variable that corresponds to the function's return type.
-* If `argv[1]` is a string, then `argv[1][0]` is just the first character of that string.
-* Recall that the `ctype.h` header file contains a number of useful functions that tell us things about characters.
-* The ASCII value of `A` is 65. The ASCII value of `a` is 97.
-* The ASCII value of `B` is 66. The ASCII value of `b` is 98. See a potential pattern emerging?
+* Функції мають вхідні та вихідні дані.
+* Коли ми *оголошуємо* функцію, потрібно задати тип значення, яке вона повертає, її ім’я та перелік аргументів, кожен з яких також має тип.
+* Коли ми *використовуємо* або *викликаємо* функцію, ми просто передаємо підходящі значення до переліку аргументів та призначаємо вихідні дані функції змінній, яка має тип відповідний до типу поверненого функцією значення.
+* Якщо `argv[1]` - це рядок, тоді `argv[1][0]` - це перший символ цього рядка.
+* Пам’ятайте, що заголовковий файл `ctype.h` містить корисні функції, які можуть розповісти різні речі про символи.
+* Значення ASCII для `A` - 65. Значення ASCII для `a` - 97.
+* Значення ASCII для `B` - 66. Значення ASCII для `b` - 98. Помітили потенційну послідовність?
 
 {% endspoiler %}
 
 {% next %}
 
-## One-character keywords
+## Односимвольні ключові слова
 
-Time to get back to using that enciphering code you wrote before! You may have noticed that if your keyword _k_ consists of exactly one letter (say, `H` or `h`), Vigenère's cipher effectively becomes a Caesar cipher (of, in this example, 7). Let's for now indeed assume the user's keyword will just be a single letter. Use your newly-written `shift` function to calculate the shift value for the letter they provided, assign the return value of that function to an integer variable `key`, and use `key` exactly as you did in Caesar's cipher! It should suffice, in fact, to simply delete the recently-added `printf` and the `return 0;` line now, letting the program finally proceed to your previously-written Caesar cipher code!
+Час повернутись до використання цього шифрувального коду, який ви написали! Ви мали помітити, що якщо ваше ключове слово _k_ містить точно одну літеру (скажімо, `H` або `h`), шифрування Вінежера успішно перетворюється на шифрування Цезаря (з кодом, у цьому прикладі, 7). Давайте на разі справді припустимо, що користувач надав односимвольне ключове слово. Використайте щойно створену функцію `shift` щоб підрахувати значення зсуву для поданої літери, призначте повернуте значення функції цілочисельній змінній `key`, та використайте `key` так само, як ви робили у шифруванні Цезаря! Все має звестись до простого видалення щойно доданого рядка `printf` та `return 0;` дозволивши програмі використати раніше написаний код шифрування Цезаря!
 
 ```
 $ ./vigenere A
@@ -159,7 +153,7 @@ plaintext:  hello
 ciphertext: hello
 ```
 
-or
+чи
 
 ```
 $ ./vigenere b
@@ -167,7 +161,7 @@ plaintext:  HELLO
 ciphertext: IFMMP
 ```
 
-or
+чи
 
 ```
 $ ./vigenere C
@@ -175,36 +169,27 @@ plaintext:  HeLlO
 ciphertext: JgNnQ
 ```
 
-{% spoiler "Hints" %}
+{% spoiler "Підказка" %}
 
-If some of your variables in your Caesar solution don't match what they've been called so far in this lab, just edit the names of things so they do match!
-
-{% endspoiler %}
-
-{% next %}
-
-## Final Steps
-
-Now it's your turn to take things across the finish line by implementing the remaining functionality in `vigenere.c`. Remember that the user's keyword will probably consist of multiple letters, so you may need to calculate a new shift value for each letter of the plaintext; you may then want to move your `shift` function into your loop somehow.
-
-Remember also that every time you encipher a character, you need to move to the next letter of _k_, the keyword (and wrap around to the beginning of the keyword if you exhaust all of its characters). But if you don't encipher a character (e.g., a space or a punctuation mark), don't advance to the next character of _k_!
-
-And as before, be sure to preserve case, but do so only based on the case of the original message. Whether or not a letter in the keyword is capitalized should have no bearing on whether a letter in the ciphertext is!
-
-{% spoiler "Hints" %}
-
-* You'll probably need one counter, `i` for iterating over the plaintext and one counter, `j` for iterating over the keyword.
-* You'll probably find it easiest to control the keyword counter yourself, rather than relying on the `for` loop you're using to iterate over the plaintext!
-* If the length of the keyword is, say, 4 characters, then the last character of that keyword can be found at `keyword[3]`. Then, for the next character you encipher, you'll want to use `keyword[0]`.
+Якщо деякі змінні у вашому розв’язку для Цезаря не збігаються з тим, як вони були названі у цьому середовищі, просто відредагуйте назви, аби вони збігались!
 
 {% endspoiler %}
 
 {% next %}
 
-## How to Submit
+## Останні кроки
 
-Execute the below, logging in with your GitHub username and password when prompted. For security, you'll see asterisks (`*`) instead of the actual characters in your password.
+NТепер ваша черга перенести все, аби завершити імплементування функціональності, яка залишалась, до `vigenere.c`. Пам’ятайте, що ключове слово користувача, мабуть, міститиме кілька літер, тож вам потрібно обрахувати нове значення зсуву для кожної літери звичайного тексту, потім ви, можливо, захочете пересунути функцію `shift` якимось чином до циклу.
 
-```
-submit50 cs50/2018/fall/vigenere
-```
+Пам’ятайте, що щоразу, коли ви шифруєте символ, ви маєте посуватись далі на наступну літеру в _k_, ключовому слові (і повернутись на початок ключового слова, якщо ви пройшли всіма його символами). Але якщо ви не зашифрували символ (тобто пробіл або пунктуаційний знак), не переходьте далі на наступний символ у _k_!
+
+І, як і раніше, зберігайте регістр, але тільки спершись на оригінальне повідомлення. Велика чи маленька літера у ключовому слові не впливає на те, якою буде літера у зашифрованому тексті!
+
+{% spoiler "Підказка" %}
+
+* Вам, мабуть, знадобиться лічильник `i` для ітерації через звичайний текст та лічильник `j` для ітерації через ключове слово.
+* Ви, мабуть, зрозумієте, що найпростіше контролювати лічильник для ключового слова самостійно, а не покладатись на цикл `for` який ви використаєте для ітерування через звичайний текст!
+* Якщо довжина ключового слова, скажімо, 4 символи, тоді останній символ цього ключового слова можна знайти у `keyword[3]`. Тоді для наступного символу шифрування вам потрібно використовувати `keyword[0].`
+
+{% endspoiler %}
+
